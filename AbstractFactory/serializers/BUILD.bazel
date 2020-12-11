@@ -1,0 +1,18 @@
+load("//cc:defs.bzl", "cc_shared_library")
+
+cc_shared_library(
+    name = "serializers",
+    srcs = glob(["*.cpp"]),
+    hdrs = glob(["*.h"]),
+    pkg = True,
+    pkg_filegroup = "serializers_tar",
+    pkg_filegroup_visibility = [
+        "//AbstractFactory:__subpackages__",
+        "//Facade:__pkg__",
+    ],
+    visibility = [
+        "//AbstractFactory:__subpackages__",
+        "//Facade:__pkg__",
+    ],
+    deps = ["//AbstractFactory/rooms:isaac_rooms"],
+)

@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+cc_library(
+    name = "BridgeLibrary",
+    srcs = glob([
+        "axles/*.cpp",
+        "wheels/*.cpp",
+    ]),
+    hdrs = glob(["include/*.h"]),
+    strip_include_prefix = "include",
+)
+
+cc_binary(
+    name = "Bridge",
+    srcs = ["main.cpp"],
+    deps = [":BridgeLibrary"],
+)
+
+pkg_tar(
+    name = "bridge-tar",
+    srcs = [":Bridge"],
+    mode = "0755",
+    package_dir = "bin",
+    visibility = ["//package:__pkg__"],
+)

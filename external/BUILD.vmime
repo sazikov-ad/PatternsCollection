@@ -1,0 +1,55 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_import", "cc_library")
+
+cc_library(
+    name = "vmime_contrib",
+    hdrs = glob([
+        "contrib/**/*.h",
+        "contrib/**/*.c",
+    ]),
+)
+
+cc_library(
+    name = "vmime_interface",
+    hdrs = glob([
+        "src/vmime/**/*.hpp",
+        "src/vmime/**/*.inl",
+    ]),
+    strip_include_prefix = "src",
+)
+
+cc_binary(
+    name = "libvmime.so",
+    srcs = glob(["src/vmime/**/*.cpp"]),
+    linkshared = True,
+    deps = [
+        ":vmime_contrib",
+        ":vmime_interface",
+    ],
+)
+
+cc_import(
+    name = "vmime_import",
+    shared_library = "libvmime.so",
+)
+
+cc_library(
+    name = "vmime",
+    hdrs = glob([
+        "src/vmime/**/*.hpp",
+    ]),
+    linkopts = [
+        "-lgnutls",
+        "-lpthread",
+        "-licuuc",
+        "-lanl",
+    ],
+    strip_include_prefix = "src",
+    visibility = ["//visibility:public"],
+    deps = [":vmime_import"],
+)
+
+filegroup(
+    name = "vmime_tar",
+    srcs = ["libvmime.so"],
+    visibility = ["//visibility:public"],
+)

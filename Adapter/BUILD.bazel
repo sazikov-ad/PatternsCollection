@@ -1,0 +1,41 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+filegroup(
+    name = "data",
+    srcs = [
+        "data/input.json",
+        "data/input.txt",
+    ],
+)
+
+cc_binary(
+    name = "Adapter",
+    srcs = glob([
+        "*.cpp",
+        "*.h",
+    ]),
+)
+
+pkg_tar(
+    name = "adapter-bin",
+    srcs = [":Adapter"],
+    mode = "0755",
+    package_dir = "bin",
+)
+
+pkg_tar(
+    name = "adapter-data",
+    srcs = [":data"],
+    mode = "0755",
+    package_dir = "bin/data",
+)
+
+pkg_tar(
+    name = "adapter-tar",
+    visibility = ["//package:__pkg__"],
+    deps = [
+        ":adapter-bin",
+        ":adapter-data",
+    ],
+)

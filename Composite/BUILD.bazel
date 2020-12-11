@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+cc_library(
+    name = "CompositeLib",
+    srcs = glob(["ration/*.cpp"]),
+    hdrs = glob(["include/*.h"]),
+    strip_include_prefix = "include",
+)
+
+cc_binary(
+    name = "Composite",
+    srcs = glob([
+        "*.cpp",
+        "cookery/*.h",
+    ]),
+    deps = [":CompositeLib"],
+)
+
+pkg_tar(
+    name = "composite-tar",
+    srcs = [":Composite"],
+    mode = "0755",
+    package_dir = "bin",
+    visibility = ["//package:__pkg__"],
+)

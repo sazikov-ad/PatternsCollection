@@ -1,0 +1,17 @@
+load("//cc:defs.bzl", "cc_shared_library")
+
+cc_shared_library(
+    name = "isaac_rooms",
+    srcs = glob(["*.cpp"]),
+    hdrs = glob(["*.h"]),
+    pkg = True,
+    pkg_filegroup = "isaac_rooms_tar",
+    pkg_filegroup_visibility = [
+        "//AbstractFactory:__subpackages__",
+        "//Facade:__pkg__",
+    ],
+    visibility = [
+        "//AbstractFactory:__subpackages__",
+        "//Facade:__pkg__",
+    ],
+)

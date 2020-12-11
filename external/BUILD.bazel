@@ -1,0 +1,8 @@
+package(default_visibility = ["//visibility:public"])
+
+exports_files([
+    "BUILD.inicpp",
+    "BUILD.tgbot",
+    "BUILD.vmime",
+    "vmime_build.patch",
+])

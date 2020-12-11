@@ -1,0 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+cc_binary(
+    name = "Mediator",
+    srcs = ["main.cpp"] + glob([
+        "dispatcher/*.h",
+        "dispatcher/*.cpp",
+        "vehicles/*.h",
+        "vehicles/*.cpp",
+    ]),
+    linkopts = ["-lpthread"],
+)
+
+pkg_tar(
+    name = "mediator-tar",
+    srcs = [":Mediator"],
+    mode = "0755",
+    package_dir = "bin",
+    visibility = ["//package:__pkg__"],
+)

@@ -1,0 +1,18 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+cc_binary(
+    name = "Strategy",
+    srcs = glob([
+        "*.cpp",
+        "*.h",
+    ]),
+)
+
+pkg_tar(
+    name = "strategy-tar",
+    srcs = [":Strategy"],
+    mode = "0755",
+    package_dir = "bin",
+    visibility = ["//package:__pkg__"],
+)
