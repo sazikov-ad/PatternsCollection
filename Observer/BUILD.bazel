@@ -1,0 +1,18 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+cc_binary(
+    name = "Observer",
+    srcs = glob([
+        "*.cpp",
+    ]),
+    linkopts = ["-lpthread"],
+)
+
+pkg_tar(
+    name = "observer-tar",
+    srcs = [":Observer"],
+    mode = "0755",
+    package_dir = "bin",
+    visibility = ["//package:__pkg__"],
+)
