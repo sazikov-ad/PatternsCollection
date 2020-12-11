@@ -1,0 +1,35 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_import", "cc_library")
+
+cc_library(
+    name = "inicpp_interface",
+    hdrs = glob(["include/inicpp/*.h"]),
+    strip_include_prefix = "include/inicpp",
+)
+
+cc_binary(
+    name = "libinicpp.so",
+    srcs = glob([
+        "src/*.cpp",
+    ]),
+    linkshared = True,
+    deps = [":inicpp_interface"],
+)
+
+cc_import(
+    name = "inicpp_import",
+    shared_library = "libinicpp.so",
+)
+
+cc_library(
+    name = "inicpp",
+    hdrs = glob(["include/inicpp/*.h"]),
+    strip_include_prefix = "include",
+    visibility = ["//visibility:public"],
+    deps = [":inicpp_import"],
+)
+
+filegroup(
+    name = "inicpp_tar",
+    srcs = ["libinicpp.so"],
+    visibility = ["//visibility:public"],
+)

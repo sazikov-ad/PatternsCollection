@@ -4,9 +4,10 @@
 
 #pragma once
 
-#include <DecoratorNotifier.h>
-#include <tgbot/Bot.h>
-#include <inicpp/inicpp.h>
+#include "DecoratorNotifier.h"
+
+#include "tgbot/Bot.h"
+#include "inicpp/inicpp.h"
 
 class TgNotifier : public DecoratorNotifier {
  public:

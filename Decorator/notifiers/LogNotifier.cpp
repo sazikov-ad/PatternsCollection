@@ -2,7 +2,7 @@
 // Created by Pavel Akhtyamov on 2019-04-02.
 //
 
-#include <LogNotifier.h>
+#include "LogNotifier.h"
 
 void LogNotifier::Notify(const std::string &message) {
   stream_ << message << std::endl;

@@ -1,0 +1,63 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+filegroup(
+    name = "configs",
+    srcs = [
+        "configs/config.ini",
+        "configs/config.ini.example",
+    ],
+)
+
+cc_library(
+    name = "DecoratorLib",
+    srcs = glob(["notifiers/*.cpp"]),
+    hdrs = glob(["include/*.h"]),
+    strip_include_prefix = "include",
+    deps = [
+        "@inicpp",
+        "@tgbot",
+        "@vmime",
+    ],
+)
+
+cc_binary(
+    name = "Decorator",
+    srcs = ["main.cpp"],
+    deps = [":DecoratorLib"],
+)
+
+pkg_tar(
+    name = "decorator-bin",
+    srcs = [":Decorator"],
+    mode = "0755",
+    package_dir = "bin",
+)
+
+pkg_tar(
+    name = "decorator-data",
+    srcs = [":configs"],
+    mode = "0755",
+    package_dir = "bin/configs",
+)
+
+pkg_tar(
+    name = "decorator-lib",
+    srcs = [
+        "@inicpp//:inicpp_tar",
+        "@tgbot//:tgbot_tar",
+        "@vmime//:vmime_tar",
+    ],
+    mode = "0755",
+    package_dir = "lib",
+)
+
+pkg_tar(
+    name = "decorator-tar",
+    visibility = ["//package:__pkg__"],
+    deps = [
+        ":decorator-bin",
+        ":decorator-data",
+        ":decorator-lib",
+    ],
+)

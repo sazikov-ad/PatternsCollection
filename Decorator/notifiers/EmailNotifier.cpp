@@ -2,13 +2,15 @@
 // Created by Pavel Akhtyamov on 2019-04-02.
 //
 
-#include <EmailNotifier.h>
-#include <memory>
-#include <DecoratorNotifier.h>
-#include <inicpp/config.h>
+#include "EmailNotifier.h"
+#include "DecoratorNotifier.h"
 
-#include <vmime/vmime.hpp>
-#include <vmime/platforms/posix/posixHandler.hpp>
+#include <memory>
+
+#include "inicpp/config.h"
+
+#include "vmime/vmime.hpp"
+#include "vmime/platforms/posix/posixHandler.hpp"
 
 using inicpp::string_ini_t;
 

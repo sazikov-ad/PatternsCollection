@@ -4,9 +4,11 @@
 // Created by Pavel Akhtyamov on 2019-04-02.
 //
 
-#include <TgNotifier.h>
+#include "TgNotifier.h"
+
+#include "tgbot/Bot.h"
+
 #include <sstream>
-#include <tgbot/Bot.h>
 
 
 std::string ParseChatToken(const inicpp::option& option) {

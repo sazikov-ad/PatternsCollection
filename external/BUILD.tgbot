@@ -1,0 +1,66 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_import", "cc_library")
+
+cc_library(
+    name = "tgbot_interface",
+    hdrs = glob([
+        "include/tgbot/*.h",
+        "include/tgbot/net/*.h",
+        "include/tgbot/tools/*.h",
+        "include/tgbot/types/*.h",
+    ]),
+    strip_include_prefix = "include",
+)
+
+cc_binary(
+    name = "libtgbot.so",
+    srcs = glob([
+        "src/*.cpp",
+        "src/net/*.cpp",
+        "src/tools/*.cpp",
+        "src/types/*.cpp",
+    ]),
+    linkopts = [
+        "-lcurl",
+        "-lpthread",
+        "-lz",
+        "-lboost_system",
+        "-lssl",
+    ],
+    linkshared = True,
+    local_defines = [
+        "TGBOT_DLL",
+        "HAVE_CURL",
+    ],
+    deps = [":tgbot_interface"],
+)
+
+cc_import(
+    name = "tgbot_import",
+    shared_library = "libtgbot.so",
+)
+
+cc_library(
+    name = "tgbot",
+    hdrs = glob([
+        "include/tgbot/*.h",
+        "include/tgbot/net/*.h",
+        "include/tgbot/tools/*.h",
+        "include/tgbot/types/*.h",
+    ]),
+    strip_include_prefix = "include",
+    visibility = ["//visibility:public"],
+    deps = [":tgbot_import"],
+    linkopts = [
+            "-lcurl",
+            "-lpthread",
+            "-lz",
+            "-lboost_system",
+            "-lssl",
+    ],
+)
+
+filegroup(
+    name = "tgbot_tar",
+    srcs = ["libtgbot.so"],
+    visibility = ["//visibility:public"],
+)
