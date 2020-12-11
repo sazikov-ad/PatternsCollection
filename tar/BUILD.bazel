@@ -6,5 +6,6 @@ pkg_tar(
     deps = [
         "//AbstractFactory:abstract-factory-tar",
         "//Adapter:adapter-tar",
+        "//Bridge:bridge-tar",
     ],
 )
