@@ -6,6 +6,12 @@ cc_shared_library(
     hdrs = glob(["*.h"]),
     pkg = True,
     pkg_filegroup = "isaac_rooms_tar",
-    pkg_filegroup_visibility = ["//AbstractFactory:__subpackages__"],
-    visibility = ["//AbstractFactory:__subpackages__"],
+    pkg_filegroup_visibility = [
+        "//AbstractFactory:__subpackages__",
+        "//Facade:__pkg__",
+    ],
+    visibility = [
+        "//AbstractFactory:__subpackages__",
+        "//Facade:__pkg__",
+    ],
 )

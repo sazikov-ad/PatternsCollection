@@ -2,8 +2,9 @@
 // Created by Pavel Akhtyamov on 2019-03-20.
 //
 
+#include "Facade/facades/Facade.h"
+
 #include <iostream>
-#include <Facade/cpp-source/facades/Facade.h>
 
 int main() {
   Facade facade;

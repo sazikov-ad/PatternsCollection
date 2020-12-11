@@ -4,8 +4,9 @@
 
 #pragma once
 
+#include "AbstractFactory/serializers/GameSerializer.h"
+
 #include <string>
-#include <AbstractFactory/cpp-source/serializers/GameSerializer.h>
 
 class IsaacFacade {
  public:

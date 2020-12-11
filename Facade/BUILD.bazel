@@ -1,0 +1,44 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+cc_binary(
+    name = "Facade",
+    srcs = ["main.cpp"] + glob([
+        "facades/*.h",
+        "facades/*.cpp",
+    ]),
+    deps = [
+        "//AbstractFactory/factories:isaac_factories",
+        "//AbstractFactory/rooms:isaac_rooms",
+        "//AbstractFactory/serializers",
+        "//Builder:burger_shop",
+    ],
+)
+
+pkg_tar(
+    name = "facade-bin",
+    srcs = [":Facade"],
+    mode = "0755",
+    package_dir = "bin",
+)
+
+pkg_tar(
+    name = "facade-lib",
+    srcs = [
+        "//AbstractFactory/factories:isaac_factories_tar",
+        "//AbstractFactory/rooms:isaac_rooms_tar",
+        "//AbstractFactory/serializers:serializers_tar",
+        "//Builder:burger_shop_tar",
+    ],
+    mode = "0755",
+    package_dir = "lib",
+)
+
+pkg_tar(
+    name = "facade-tar",
+    visibility = ["//tar:__pkg__"],
+    deps = [
+        ":facade-bin",
+        ":facade-lib",
+    ],
+)

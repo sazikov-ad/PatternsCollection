@@ -9,5 +9,6 @@ pkg_tar(
         "//Bridge:bridge-tar",
         "//Builder:builder-tar",
         "//ChainResponsibility:chain-responsibility-tar",
+        "//Facade:facade-tar",
     ],
 )
