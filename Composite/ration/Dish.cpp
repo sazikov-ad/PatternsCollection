@@ -2,7 +2,7 @@
 // Created by Pavel Akhtyamov on 2019-03-26.
 //
 
-#include <Dish.h>
+#include "Dish.h"
 
 size_t Dish::GetCalories() {
   size_t result = 0;

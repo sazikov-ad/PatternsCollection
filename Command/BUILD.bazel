@@ -2,16 +2,21 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
 
 cc_binary(
-    name = "ChainResponsibility",
+    name = "Command",
     srcs = glob([
         "*.cpp",
+        "commands/*.cpp",
+        "cookery/*.cpp",
         "*.h",
+        "commands/*.h",
+        "cookery/*.h",
     ]),
+    linkopts = ["-lpthread"],
 )
 
 pkg_tar(
-    name = "chain-responsibility-tar",
-    srcs = [":ChainResponsibility"],
+    name = "command-tar",
+    srcs = [":Command"],
     mode = "0755",
     package_dir = "bin",
     visibility = ["//tar:__pkg__"],
