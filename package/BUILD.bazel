@@ -15,5 +15,8 @@ pkg_tar(
         "//Memento:memento-tar",
         "//Observer:observer-tar",
         "//Prototype:prototype-tar",
+        "//State:state-tar",
+        "//Strategy:strategy-tar",
+        "//Visitor:visitor-tar",
     ],
 )

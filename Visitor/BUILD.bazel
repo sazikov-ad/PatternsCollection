@@ -1,0 +1,20 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+cc_binary(
+    name = "Visitor",
+    srcs = ["main.cpp"] + glob([
+        "rooms/*.cpp",
+        "rooms/*.h",
+        "workers/*.cpp",
+        "workers/*.h",
+    ]),
+)
+
+pkg_tar(
+    name = "visitor-tar",
+    srcs = [":Visitor"],
+    mode = "0755",
+    package_dir = "bin",
+    visibility = ["//package:__pkg__"],
+)
