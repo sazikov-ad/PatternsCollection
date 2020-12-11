@@ -7,5 +7,7 @@ pkg_tar(
         "//AbstractFactory:abstract-factory-tar",
         "//Adapter:adapter-tar",
         "//Bridge:bridge-tar",
+        "//Builder:builder-tar",
+        "//ChainResponsibility:chain-responsibility-tar",
     ],
 )

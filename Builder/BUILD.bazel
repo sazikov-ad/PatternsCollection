@@ -1,0 +1,45 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("//cc:defs.bzl", "cc_shared_library")
+load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
+
+cc_shared_library(
+    name = "burger_shop",
+    srcs = ["Chef.cpp"] + glob([
+        "builders/*.cpp",
+        "builders/base/*.cpp",
+    ]),
+    hdrs = ["Chef.h"] + glob([
+        "builders/*.h",
+        "builders/base/*.h",
+    ]),
+    pkg = True,
+    pkg_filegroup = "burger_shop_tar",
+)
+
+cc_binary(
+    name = "Builder",
+    srcs = ["main.cpp"],
+    deps = [":burger_shop"],
+)
+
+pkg_tar(
+    name = "builder-bin",
+    mode = "0755",
+    package_dir = "bin",
+)
+
+pkg_tar(
+    name = "builder-lib",
+    srcs = [":burger_shop_tar"],
+    mode = "0755",
+    package_dir = "lib",
+)
+
+pkg_tar(
+    name = "builder-tar",
+    visibility = ["//tar:__pkg__"],
+    deps = [
+        ":builder-bin",
+        ":builder-lib",
+    ],
+)

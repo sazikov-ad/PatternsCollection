@@ -8,7 +8,7 @@ def cc_shared_library(
         visibility = None,
         pkg = False,
         pkg_filegroup = False,
-        pkg_filegroup_visibility = False,
+        pkg_filegroup_visibility = None,
         **kwargs):
     so_name = "lib" + name + ".so"
     import_target_name = name + "_so_import"
