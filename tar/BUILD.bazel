@@ -5,5 +5,6 @@ pkg_tar(
     extension = "tar.gz",
     deps = [
         "//AbstractFactory:abstract-factory-tar",
+        "//Adapter:adapter-tar",
     ],
 )
