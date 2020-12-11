@@ -41,7 +41,7 @@ pkg_tar(
 
 pkg_tar(
     name = "abstract-factory-tar",
-    visibility = ["//tar:__pkg__"],
+    visibility = ["//package:__pkg__"],
     deps = [
         ":abstract-factory-bin",
         ":abstract-factory-lib",

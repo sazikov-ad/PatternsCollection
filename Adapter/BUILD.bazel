@@ -33,7 +33,7 @@ pkg_tar(
 
 pkg_tar(
     name = "adapter-tar",
-    visibility = ["//tar:__pkg__"],
+    visibility = ["//package:__pkg__"],
     deps = [
         ":adapter-bin",
         ":adapter-data",

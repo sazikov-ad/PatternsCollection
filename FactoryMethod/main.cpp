@@ -2,12 +2,12 @@
 // Created by Pavel Akhtyamov on 2020-02-16.
 //
 
+#include "routers/Router.h"
+#include "routers/Hub.h"
+#include "routers/WifiRouter.h"
 
 #include <memory>
-#include <routers/Router.h>
-#include <routers/Hub.h>
 #include <iostream>
-#include <routers/WifiRouter.h>
 
 int main() {
 

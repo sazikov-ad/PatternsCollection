@@ -22,5 +22,5 @@ pkg_tar(
     srcs = [":Bridge"],
     mode = "0755",
     package_dir = "bin",
-    visibility = ["//tar:__pkg__"],
+    visibility = ["//package:__pkg__"],
 )

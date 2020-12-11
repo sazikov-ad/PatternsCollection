@@ -2,16 +2,18 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
 
 cc_binary(
-    name = "ChainResponsibility",
-    srcs = glob([
-        "*.cpp",
-        "*.h",
+    name = "FactoryMethod",
+    srcs = ["main.cpp"] + glob([
+        "routers/*.cpp",
+        "routers/*.h",
+        "routes/*.cpp",
+        "routes/*.h",
     ]),
 )
 
 pkg_tar(
-    name = "chain-responsibility-tar",
-    srcs = [":ChainResponsibility"],
+    name = "factory-method-tar",
+    srcs = [":FactoryMethod"],
     mode = "0755",
     package_dir = "bin",
     visibility = ["//package:__pkg__"],

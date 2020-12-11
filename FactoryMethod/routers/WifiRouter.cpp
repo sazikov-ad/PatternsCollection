@@ -4,7 +4,7 @@
 
 #include "WifiRouter.h"
 
-#include <routes/WifiRoute.h>
+#include "FactoryMethod/routes/WifiRoute.h"
 
 std::shared_ptr<Route> WifiRouter::CreateRoute() const {
   return std::make_shared<WifiRoute>();

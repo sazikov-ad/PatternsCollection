@@ -6,7 +6,6 @@
 
 #include <string>
 
-
 class Route {
  public:
   virtual std::string Connect() const = 0;

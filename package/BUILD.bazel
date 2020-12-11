@@ -10,5 +10,6 @@ pkg_tar(
         "//Builder:builder-tar",
         "//ChainResponsibility:chain-responsibility-tar",
         "//Facade:facade-tar",
+        "//FactoryMethod:factory-method-tar",
     ],
 )

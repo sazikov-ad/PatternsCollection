@@ -39,7 +39,7 @@ pkg_tar(
 
 pkg_tar(
     name = "builder-tar",
-    visibility = ["//tar:__pkg__"],
+    visibility = ["//package:__pkg__"],
     deps = [
         ":builder-bin",
         ":builder-lib",
