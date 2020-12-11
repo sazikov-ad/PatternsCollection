@@ -2,8 +2,8 @@ load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
 
 pkg_tar(
     name = "PatternCollections",
-    extension = ".tar.gz",
+    extension = "tar.gz",
     deps = [
-        "//AbstractFactory:abstract-factory-tar",
+        "//AbstractFactory:abstract-factory-bin",
     ],
 )

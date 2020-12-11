@@ -4,7 +4,6 @@ load("@bazel_tools//tools/build_defs/pkg:pkg.bzl", "pkg_tar")
 cc_binary(
     name = "AbstractFactory",
     srcs = ["main.cpp"],
-    linkstatic = False,
     deps = [
         "//AbstractFactory/factories:isaac_factories",
     ],
@@ -13,7 +12,6 @@ cc_binary(
 cc_binary(
     name = "AbstractFactorySerializer",
     srcs = ["main_serializer.cpp"],
-    linkstatic = False,
     deps = [
         "//AbstractFactory/factories:isaac_factories",
         "//AbstractFactory/serializers",
@@ -27,25 +25,6 @@ pkg_tar(
         ":AbstractFactorySerializer",
     ],
     mode = "0755",
-    package_dir = "/usr/bin",
-)
-
-pkg_tar(
-    name = "abstract-factory-lib",
-    srcs = [
-        "//AbstractFactory/factories:isaac_factories",
-        "//AbstractFactory/rooms:isaac_rooms",
-        "//AbstractFactory/serializers",
-    ],
-    mode = "0755",
-    package_dir = "/usr/lib",
-)
-
-pkg_tar(
-    name = "abstract-factory-tar",
+    package_dir = "bin",
     visibility = ["//tar:__pkg__"],
-    deps = [
-        "abstract-factory-bin",
-        "abstract-factory-lib",
-    ],
 )
