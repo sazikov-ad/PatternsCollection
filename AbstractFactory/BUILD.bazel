@@ -26,5 +26,24 @@ pkg_tar(
     ],
     mode = "0755",
     package_dir = "bin",
+)
+
+pkg_tar(
+    name = "abstract-factory-lib",
+    srcs = [
+        "//AbstractFactory/factories:isaac_factories_tar",
+        "//AbstractFactory/rooms:isaac_rooms_tar",
+        "//AbstractFactory/serializers:serializers_tar",
+    ],
+    mode = "0755",
+    package_dir = "lib",
+)
+
+pkg_tar(
+    name = "abstract-factory-tar",
     visibility = ["//tar:__pkg__"],
+    deps = [
+        ":abstract-factory-bin",
+        ":abstract-factory-lib",
+    ],
 )

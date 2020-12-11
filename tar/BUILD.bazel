@@ -4,6 +4,6 @@ pkg_tar(
     name = "PatternCollections",
     extension = "tar.gz",
     deps = [
-        "//AbstractFactory:abstract-factory-bin",
+        "//AbstractFactory:abstract-factory-tar",
     ],
 )
